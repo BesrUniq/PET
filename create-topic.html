@@ -34,7 +34,7 @@
             margin: 10px 0 5px;
         }
 
-        input, textarea {
+        input, textarea, select {
             width: 100%;
             padding: 10px;
             margin: 10px 0;
@@ -46,7 +46,7 @@
         .btn {
             width: 100%;
             padding: 10px;
-            background-color: #333333; /* Серый графит */
+            background-color: #333333;
             color: white;
             border: none;
             border-radius: 5px;
@@ -79,8 +79,16 @@
     <h2>Создание новой темы</h2>
 
     <form action="/create-topic" method="POST">
-        <label for="topic-title">Название темы</label>
-        <input type="text" id="topic-title" name="topic-title" required placeholder="Введите название темы">
+        <label for="author-name">Имя автора</label>
+        <input type="text" id="author-name" name="author-name" required placeholder="Введите ваше имя">
+
+        <label for="topic-selection">Выберите тему</label>
+        <select id="topic-selection" name="topic-selection" required>
+            <option value="" disabled selected>Выберите тему</option>
+            <option value="Автомобили">Автомобили</option>
+            <option value="Путешесвия">Путешесвия</option>
+            <option value="Игры">Игры</option>
+        </select>
 
         <label for="topic-message">Сообщение для обсуждения</label>
         <textarea id="topic-message" name="topic-message" rows="6" required placeholder="Напишите описание темы или вопрос..."></textarea>
