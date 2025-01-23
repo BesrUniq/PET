@@ -1,10 +1,196 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Форум</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .auth-links {
+            display: flex;
+        }
+
+        .auth-links a {
+            color: white;
+            text-decoration: none;
+            margin-left: 15px;
+            font-weight: bold;
+        }
+
+        .auth-links a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            width: 80%;
+            margin: 20px auto;
+        }
+
+        .topics {
+            margin-top: 30px;
+        }
+
+        .topic {
+            background-color: #fff;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .topic h3 {
+            margin: 0;
+        }
+
+        .topic p {
+            font-size: 14px;
+            color: #555;
+        }
+
+        .topic-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        .topic-footer .author {
+            font-weight: bold;
+        }
+
+        .topic-footer .date {
+            font-size: 12px;
+            color: #888;
+        }
+
+        .create-post {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+            text-decoration: none;
+        }
+
+        .create-post:hover {
+            background-color: #45a049;
+        }
+
+        .view-discussion {
+            background-color: #007BFF;
+            color: white;
+            padding: 5px 15px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 14px;
+            margin-right: 10px;
+        }
+
+        .view-discussion:hover {
+            background-color: #0056b3;
+        }
+
+        .comment-count {
+            font-size: 12px;
+            color: #777;
+            margin-top: 5px;
+        }
+    </style>
 </head>
 <body>
-<p>text</p>
+
+<header>
+    <h1>Logo</h1>
+    <div class="auth-links">
+        <a href="login.html">Войти</a>
+        <a href="register.html">Зарегистрироваться</a>
+    </div>
+</header>
+
+<div class="container">
+    <a href="create-post.html" class="create-post">Создать обсуждение</a>
+
+    <div class="topics">
+
+        <!-- Тема 1 -->
+        <div class="topic">
+            <h3>Автомобили</h3>
+            <p>Где взять хавал?</p>
+            <div class="topic-footer">
+                <span class="author">Автор: Иван Даунов</span>
+                <span class="date">Дата: 23 Января 2025</span>
+            </div>
+
+            <div>
+                <a href="discussion1.html" class="view-discussion">Хавал</a>
+                <a href="discussion2.html" class="view-discussion">БМВ вечная</a>
+            </div>
+
+            <div class="comment-count">
+                Комментариев: 5
+            </div>
+        </div>
+
+        <!-- Тема 2 -->
+        <div class="topic">
+            <h3>Путешесвия</h3>
+            <p>Куда ехать?</p>
+            <div class="topic-footer">
+                <span class="author">Автор: Алексей Бобров</span>
+                <span class="date">Дата: 22 Января 2025</span>
+            </div>
+
+            <div>
+                <a href="discussion3.html" class="view-discussion">Когда на геш?</a>
+                <a href="discussion4.html" class="view-discussion">Как донбас</a>
+            </div>
+
+            <div class="comment-count">
+                Комментариев: 3
+            </div>
+        </div>
+
+        <!-- Тема 3 -->
+        <div class="topic">
+            <h3>Игры</h3>
+            <p>Вопросы по играм</p>
+            <div class="topic-footer">
+                <span class="author">Автор: Мария Бобиков</span>
+                <span class="date">Дата: 23 Января 2025</span>
+            </div>
+
+            <div>
+                <a href="discussion5.html" class="view-discussion">Кс</a>
+                <a href="discussion6.html" class="view-discussion">Танки</a>
+            </div>
+
+            <div class="comment-count">
+                Комментариев: 7
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
 </body>
 </html>

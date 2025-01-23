@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Создание новой темы обсуждения</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        label {
+            font-size: 16px;
+            display: block;
+            margin: 10px 0 5px;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 10px;
+            background-color: #333333; /* Серый графит */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .btn:hover {
+            background-color: #444444;
+        }
+
+        .link {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .link a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+
+        .link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Создание новой темы</h2>
+
+    <form action="/create-topic" method="POST">
+        <label for="topic-title">Название темы</label>
+        <input type="text" id="topic-title" name="topic-title" required placeholder="Введите название темы">
+
+        <label for="topic-message">Сообщение для обсуждения</label>
+        <textarea id="topic-message" name="topic-message" rows="6" required placeholder="Напишите описание темы или вопрос..."></textarea>
+
+        <button type="submit" class="btn">Создать тему</button>
+    </form>
+
+    <div class="link">
+        <p>Вернуться к <a href="index.html">главной странице</a></p>
+    </div>
+</div>
+
+</body>
+</html>
