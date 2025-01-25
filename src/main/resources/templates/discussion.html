@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Обсуждение топика</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        .comments {
+            margin-top: 30px;
+        }
+
+        .comment {
+            background-color: #f9f9f9;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+
+        .comment-author {
+            font-weight: bold;
+        }
+
+        .comment-time {
+            font-size: 12px;
+            color: #888;
+        }
+
+        .comment-text {
+            margin-top: 10px;
+        }
+
+        .comment-form {
+            margin-top: 30px;
+            padding: 15px;
+            background-color: #fff;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+
+        .comment-form input,
+        .comment-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .comment-form button {
+            width: 100%;
+            padding: 10px;
+            background-color: #333333; /* Серый графит */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .comment-form button:hover {
+            background-color: #444444;
+        }
+
+        .pagination {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .pagination a {
+            padding: 8px 15px;
+            margin: 0 5px;
+            background-color: #007BFF;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .pagination a:hover {
+            background-color: #0056b3;
+        }
+
+        .pagination .active {
+            background-color: #333333;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Хавал</h2>
+
+    <div class="comments">
+
+        <div class="comment">
+            <div class="comment-author">Иван Даунов</div>
+            <div class="comment-time">1 час назад</div>
+            <div class="comment-text">
+                хавал все таки гавно
+            </div>
+        </div>
+
+
+        <div class="comment">
+            <div class="comment-author">Алексей Бобров</div>
+            <div class="comment-time">2 часа назад</div>
+            <div class="comment-text">
+                Да точно
+            </div>
+        </div>
+
+        <div class="comment">
+            <div class="comment-author">Мария Бобиков</div>
+            <div class="comment-time">3 часа назад</div>
+            <div class="comment-text">
+                Это правда!
+            </div>
+        </div>
+    </div>
+
+    <div class="comment-form">
+        <h3>Оставьте комментарий:</h3>
+        <form action="/submit-comment" method="POST">
+            <input type="text" name="username" placeholder="Ваше имя" required>
+            <textarea name="comment" rows="5" placeholder="Ваш комментарий..." required></textarea>
+            <button type="submit">Отправить комментарий</button>
+        </form>
+    </div>
+
+
+    <div class="pagination">
+        <a href="?page=1" class="active">1</a>
+        <a href="?page=2">2</a>
+        <a href="?page=3">3</a>
+        <a href="?page=4">4</a>
+        <a href="?page=5">5</a>
+    </div>
+</div>
+
+</body>
+</html>
