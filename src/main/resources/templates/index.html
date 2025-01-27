@@ -134,22 +134,21 @@
 
     <div class="topics">
 
+
         <div class="topic" th:each="topic : ${topics}">
 
             <h3 th:text="${topic.topicSelection}">Категория</h3>
 
 
-            <a th:href="@{/topic/{id}(id=${topic.id})}" th:text="${topic.topicMessage}">Сообщение темы</a>
+            <div>
+                <div class="discussion" th:each="post : ${topic.posts}">
+                    <a th:href="@{/discussion/{id}(id=${post.id})}" th:text="${post.title}">Название обсуждения</a>
+                    <span class="author">Автор: <span th:text="${topic.authorName}"></span></span>
+                </div>
+            </div>
 
-
-            <span class="author">
-                Автор: <span th:text="${topic.authorName}">Имя автора</span>
-            </span>
-        </div>
     </div>
 </div>
 </body>
-
-
 
 

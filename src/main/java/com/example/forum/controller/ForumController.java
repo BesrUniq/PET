@@ -28,7 +28,7 @@ public class ForumController {
     }
 
 
-    @GetMapping("/")
+    @GetMapping("/forum")
     public String home(Model model) {
         List<Topic> topics = topicService.findAll();
         model.addAttribute("topics", topics);
@@ -41,20 +41,20 @@ public class ForumController {
         return "index";
     }
 
-    @GetMapping("/topic/{id}/discussion")
-    public String getDiscussionPage(@PathVariable Long id, Model model) {
 
-        Topic topic = topicService.findById(id)
-                .orElseThrow(() -> new RuntimeException("Topic not found"));
-
-        model.addAttribute("topic", topic);
-        model.addAttribute("posts", topic.getPosts());
-
-        return "discussion";
+    @GetMapping("/register")
+    public String showRegisterForm() {
+        return "register";
     }
 
-
-
+    @PostMapping("/register")
+    public String register(@RequestParam String username, @RequestParam String password) {
+        User user = new User();
+        user.setUsername(username);
+        user.setPassword(password);
+        userService.save(user);
+        return "redirect:/";
+    }
 
     @GetMapping("/post/{id}")
     public String showPost(@PathVariable Long id, Model model) {
@@ -68,9 +68,8 @@ public class ForumController {
 
     @PostMapping("/post")
     public String createPost(@RequestParam String title, @RequestParam String content, @RequestParam Long userId, @RequestParam Long topicId) {
-        User user = userService.findById(userId).orElse(new User());
-        Topic topic = topicService.findById(topicId).orElse(null);
-
+        User user = userService.findById(userId);
+        Topic topic = topicService.findById(topicId);
 
         if (user == null || topic == null) {
             return "redirect:/";
@@ -83,7 +82,7 @@ public class ForumController {
         post.setTopic(topic);
         postService.save(post);
 
-        return "redirect:/";
+        return "redirect:/forum";
     }
 
     @Autowired

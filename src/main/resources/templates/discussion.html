@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -109,34 +109,56 @@
     </style>
 </head>
 <body>
-<div class="container">
-    <h2 th:text="${topic.topicSelection}">Название топика</h2>
 
+<div class="container">
+    <h2>Хавал</h2>
 
     <div class="comments">
-        <h3>Комментарии:</h3>
-        <div class="comment" th:each="comment : ${comments}">
-            <div class="comment-author" th:text="${comment.username}">Имя автора</div>
-            <div class="comment-time" th:text="${comment.timePosted}">Время публикации</div>
-            <div class="comment-text" th:text="${comment.text}">Текст комментария</div>
+
+        <div class="comment">
+            <div class="comment-author">Иван Даунов</div>
+            <div class="comment-time">1 час назад</div>
+            <div class="comment-text">
+                хавал все таки гавно
+            </div>
+        </div>
+
+
+        <div class="comment">
+            <div class="comment-author">Алексей Бобров</div>
+            <div class="comment-time">2 часа назад</div>
+            <div class="comment-text">
+                Да точно
+            </div>
+        </div>
+
+        <div class="comment">
+            <div class="comment-author">Мария Бобиков</div>
+            <div class="comment-time">3 часа назад</div>
+            <div class="comment-text">
+                Это правда!
+            </div>
         </div>
     </div>
 
-
     <div class="comment-form">
         <h3>Оставьте комментарий:</h3>
-        <form th:action="@{/submit-comment}" method="POST">
-            <input type="hidden" name="topicId" th:value="${topic.id}">
+        <form action="/submit-comment" method="POST">
             <input type="text" name="username" placeholder="Ваше имя" required>
-            <textarea name="text" rows="5" placeholder="Ваш комментарий..." required></textarea>
+            <textarea name="comment" rows="5" placeholder="Ваш комментарий..." required></textarea>
             <button type="submit">Отправить комментарий</button>
         </form>
     </div>
 
+
     <div class="pagination">
-        <a th:href="@{/discussion?page=1}" class="active">1</a>
-        <a th:href="@{/discussion?page=2}">2</a>
-        <a th:href="@{/discussion?page=3}">3</a>
+        <a href="?page=1" class="active">1</a>
+        <a href="?page=2">2</a>
+        <a href="?page=3">3</a>
+        <a href="?page=4">4</a>
+        <a href="?page=5">5</a>
     </div>
 </div>
+
 </body>
+</html>
