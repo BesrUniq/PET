@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class ControllerJS {
 
 
-    @GetMapping("/")
+    @GetMapping("/forum")
     public String home() {
         return "index";
     }
@@ -27,9 +27,9 @@ public class ControllerJS {
     }
 
 
-    @GetMapping("/login")
+    @GetMapping("/custom-login")
     public String login() {
-        return "login";
+        return "customLogin";
     }
 
 

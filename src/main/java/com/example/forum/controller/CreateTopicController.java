@@ -46,7 +46,7 @@ public class CreateTopicController {
         }
 
 
-        return "redirect:/forum";
+        return "redirect:/";
     }
 }
 
