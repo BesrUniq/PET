@@ -1,9 +1,6 @@
 package com.example.forum.controller;
 
-import com.example.forum.models.Category;
-import com.example.forum.models.Topic;
-import com.example.forum.models.Post;
-import com.example.forum.models.User;
+import com.example.forum.models.*;
 import com.example.forum.repositories.TopicRepository;
 import com.example.forum.service.TopicService;
 import com.example.forum.service.PostService;
@@ -16,7 +13,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+
+import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class ForumController {
@@ -69,8 +69,12 @@ public class ForumController {
         Topic topic = topicService.findById(id)
                 .orElseThrow(() -> new RuntimeException("Topic not found"));
 
+        List<Post> posts = Optional.ofNullable(topic.getPosts()).orElse(Collections.emptyList());
+
+
         model.addAttribute("topic", topic);
-        model.addAttribute("posts", topic.getPosts());
+        model.addAttribute("posts", posts);
+
 
         return "discussion";
     }

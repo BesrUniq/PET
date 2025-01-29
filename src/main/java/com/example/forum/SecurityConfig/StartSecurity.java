@@ -16,7 +16,7 @@ public class StartSecurity {
         http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/","/topic/{id}", "/submit-comment", "redirect:/topic/" ,"/create-topic", "/register", "/login").permitAll()
+                        .requestMatchers("/","/topic/{id}", "/submit-comment", "redirect:/topic/" ,"/create-topic", "/register", "/login", "/topic/{id}/discussion").permitAll()
                         .anyRequest().permitAll()
                 )
                 .formLogin(form -> form

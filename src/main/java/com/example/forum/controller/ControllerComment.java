@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.security.Principal;
 import java.time.LocalDateTime;
 import com.example.forum.service.CommentService;
 
@@ -49,23 +51,29 @@ public class ControllerComment {
 
     @PostMapping("/submit-comment")
     public String submitComment(@RequestParam Long topicId,
-                                @RequestParam String username,
-                                @RequestParam String text) {
+                                @RequestParam String text,
+                                Principal principal) {
+
+        if (principal == null) {
+            throw new RuntimeException("Ошибка: пользователь не аутентифицирован");
+        }
+
+        String username = principal.getName();
 
         Topic topic = topicService.findById(topicId)
-                .orElseThrow(() -> new RuntimeException("Topic с ID \" + id + \" не найден"));
-
+                .orElseThrow(() -> new RuntimeException("Topic с ID " + topicId + " не найден"));
 
         Comment comment = new Comment();
         comment.setTopic(topic);
         comment.setUsername(username);
         comment.setText(text);
         comment.setTimePosted(LocalDateTime.now());
-        commentService.save(comment);
 
+        commentService.save(comment);
 
         return "redirect:/topic/" + topicId;
     }
+
 
 
 
