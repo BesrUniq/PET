@@ -124,27 +124,25 @@
 <header>
     <h1>Logo</h1>
     <div class="auth-links">
-        <a href="/login">Войти</a>
-        <a href="/register">Зарегистрироваться</a>
+        <th:block th:if="${isAuthenticated}">
+            <a href="/profile">Личный кабинет</a>
+            <a href="/logout">Выйти</a>
+        </th:block>
+        <th:block th:unless="${isAuthenticated}">
+            <a href="/login">Войти</a>
+            <a href="/register">Зарегистрироваться</a>
+        </th:block>
     </div>
 </header>
 
 <div class="container">
     <a href="/create-topic" class="create-post">Создать обсуждение</a>
-
     <div class="categories">
-
         <div class="category" th:each="category : ${categories}">
-
             <h2 th:text="${category.name}">Название категории</h2>
-
-
             <ul class="topics">
                 <li th:each="topic : ${category.topics}">
-
                     <a th:href="@{/topic/{id}(id=${topic.id})}" th:text="${topic.topicMessage}">Название топика</a>
-
-
                     <span class="author">
                         Автор: <span th:text="${topic.authorName}">Имя автора</span>
                     </span>

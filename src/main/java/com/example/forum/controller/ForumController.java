@@ -10,6 +10,8 @@ import com.example.forum.service.PostService;
 import com.example.forum.service.UserService;
 import com.example.forum.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -45,6 +47,18 @@ public class ForumController {
 
         model.addAttribute("topics", topics);
         model.addAttribute("categories", categories);
+
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
+
+        if (auth != null && auth.isAuthenticated() && !"anonymousUser".equals(auth.getPrincipal())) {
+            model.addAttribute("isAuthenticated", true);
+            model.addAttribute("username", auth.getName());
+        } else {
+            model.addAttribute("isAuthenticated", false);
+        }
+
+
 
         return "index";
     }
