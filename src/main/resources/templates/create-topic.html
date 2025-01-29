@@ -78,18 +78,16 @@
 <div class="container">
     <h2>Создание новой темы</h2>
 
-
     <form action="/create-topic" method="POST">
-
         <label for="author-name">Имя автора</label>
         <input type="text" id="author-name" name="authorName" required placeholder="Введите ваше имя">
 
-        <label for="topic-selection">Выберите тему</label>
-        <select id="topic-selection" name="topicSelection" required>
-            <option value="" disabled selected>Выберите тему</option>
-            <option value="Автомобили">Автомобили</option>
-            <option value="Путешествия">Путешествия</option>
-            <option value="Игры">Игры</option>
+        <label for="topic-selection">Выберите категорию</label>
+        <select id="topic-selection" name="categoryId" required>
+
+            <th:block th:each="category : ${categories}">
+                <option th:value="${category.id}" th:text="${category.name}"></option>
+            </th:block>
         </select>
 
         <label for="topic-message">Сообщение для обсуждения</label>
@@ -102,4 +100,9 @@
         <p>Вернуться к <a href="/">главной странице</a></p>
     </div>
 </div>
+
+</body>
+</html>
+
+
 

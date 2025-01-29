@@ -16,17 +16,17 @@ public class StartSecurity {
         http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/","/topic/{id}", "/submit-comment", "redirect:/topic/" , "/register", "/login").permitAll()
-                        .anyRequest().authenticated()
+                        .requestMatchers("/","/topic/{id}", "/submit-comment", "redirect:/topic/" ,"/create-topic", "/register", "/login").permitAll()
+                        .anyRequest().permitAll()
                 )
                 .formLogin(form -> form
                         .loginPage("/login")
-                        .defaultSuccessUrl("/home", true)
+                        .defaultSuccessUrl("/profile", true)
                         .permitAll()
                 )
                 .logout(logout -> logout
                         .logoutUrl("/logout")
-                        .logoutSuccessUrl("/login?logout")
+                        .logoutSuccessUrl("/ ")
                         .permitAll()
                 );
 

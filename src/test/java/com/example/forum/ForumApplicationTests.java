@@ -26,4 +26,6 @@ class ForumApplicationTests {
 		assertNotNull(postService);
 	}
 
+	
+
 }

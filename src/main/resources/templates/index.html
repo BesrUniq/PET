@@ -132,23 +132,29 @@
 <div class="container">
     <a href="/create-topic" class="create-post">Создать обсуждение</a>
 
-    <div class="topics">
+    <div class="categories">
+
+        <div class="category" th:each="category : ${categories}">
+
+            <h2 th:text="${category.name}">Название категории</h2>
 
 
-        <div class="topic" th:each="topic : ${topics}">
+            <ul class="topics">
+                <li th:each="topic : ${category.topics}">
 
-            <h3 th:text="${topic.topicSelection}">Категория</h3>
+                    <a th:href="@{/topic/{id}(id=${topic.id})}" th:text="${topic.topicMessage}">Название топика</a>
 
 
-            <div>
-                <div class="discussion" th:each="post : ${topic.posts}">
-                    <a th:href="@{/discussion/{id}(id=${post.id})}" th:text="${post.title}">Название обсуждения</a>
-                    <span class="author">Автор: <span th:text="${topic.authorName}"></span></span>
-                </div>
-            </div>
-
+                    <span class="author">
+                        Автор: <span th:text="${topic.authorName}">Имя автора</span>
+                    </span>
+                </li>
+            </ul>
+        </div>
     </div>
 </div>
 </body>
+</html>
+
 
 

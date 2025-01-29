@@ -19,6 +19,10 @@ public class Topic {
     @OneToMany(mappedBy = "topic", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Post> posts;
 
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private Category category;
+
     public List<Post> getPosts() {
         return posts;
     }
@@ -57,5 +61,13 @@ public class Topic {
 
     public void setTopicMessage(String topicMessage) {
         this.topicMessage = topicMessage;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 }

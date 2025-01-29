@@ -30,6 +30,8 @@
 package com.example.forum.models;
 
 import jakarta.persistence.*;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @Entity
 public class Post {
@@ -49,6 +51,13 @@ public class Post {
         @JoinColumn(name = "topic_id")
         private Topic topic;
 
+
+        @SpringBootApplication
+        public class ForumApplication {
+                public static void main(String[] args) {
+                        SpringApplication.run(ForumApplication.class, args);
+                }
+        }
 
         public Topic getTopic() {
                 return topic;
