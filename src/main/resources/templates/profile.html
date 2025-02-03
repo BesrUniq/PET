@@ -3,28 +3,89 @@
 <head>
     <meta charset="UTF-8">
     <title>Личный кабинет</title>
+    <style>
+        body {
+            background-color: #121212;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #1f1f1f;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #333;
+        }
+        .profile-container {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        .profile-container img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 2px solid #00bcd4;
+        }
+        .content-box {
+            max-width: 800px;
+            margin: 30px auto;
+            background-color: #1e1e1e;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        nav a {
+            color: #00bcd4;
+            text-decoration: none;
+            margin-right: 15px;
+        }
+    </style>
 </head>
-<body style="background-color: #121212; color: #ffffff; font-family: Arial, sans-serif; margin: 0; padding: 0;">
+<body>
 
-<header style="background-color: #1f1f1f; padding: 15px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #333;">
-    <h1 style="font-size: 24px; margin: 0;">Личный кабинет</h1>
+<header>
+    <h1>Личный кабинет</h1>
     <nav>
-        <a href="/" style="color: #00bcd4; text-decoration: none; margin-right: 15px;">🏠 На главную</a>
-        <a href="/logout" style="color: #00bcd4; text-decoration: none;">🚪 Выйти</a>
+        <a href="/">🏠 На главную</a>
+        <a href="/logout">🚪 Выйти</a>
     </nav>
 </header>
 
-<div style="max-width: 800px; margin: 50px auto; background-color: #1e1e1e; padding: 20px; border-radius: 10px;">
-    <h2 style="font-size: 22px;">Добро пожаловать, <span th:text="${username}">Пользователь</span>!</h2>
-    <p>Здесь вы можете управлять своим профилем:</p>
+<div class="content-box">
+    <h2>Добро пожаловать, <span th:text="${username}">Пользователь</span>!</h2>
 
+    <div class="profile-container">
+        <div>
+            <h3>Загрузить фото профиля</h3>
+            <form th:action="@{/profile/upload}" method="post" enctype="multipart/form-data">
+                <input type="file" name="file" required>
+                <button type="submit">Загрузить</button>
+            </form>
+        </div>
+
+        <div th:if="${user != null}">
+            <p>User: <span th:text="${user.username}">Пользователь</span></p>
+
+            <img th:if="${user != null and user.profilePicture != null}"
+                 th:src="${user.profilePicture}"
+                 alt="Фото профиля"
+                 style="max-width: 150px; max-height: 150px;" />
+        </div>
+    </div>
+
+    <p>Здесь вы можете управлять своим профилем:</p>
     <ul>
-        <li><a href="/update-profile" style="color: #00bcd4; text-decoration: none;">Обновить профиль</a></li>
-        <li><a href="/change-password" style="color: #00bcd4; text-decoration: none;">Сменить пароль</a></li>
-        <li><a href="/my-topics" style="color: #00bcd4; text-decoration: none;">Мои темы</a></li>
+        <li><a href="/update-profile">Обновить профиль</a></li>
+        <li><a href="/change-password">Сменить пароль</a></li>
+        <li><a href="/my-topics">Мои темы</a></li>
     </ul>
 </div>
 
 </body>
 </html>
+
 

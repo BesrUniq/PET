@@ -52,6 +52,7 @@ public class User {
 //        @Column(unique = true, nullable = false)
         private String email;
 
+        private String profilePicture;
 //        @ElementCollection(fetch = FetchType.EAGER)
 //        @CollectionTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"))
 //        @Column(name = "role")
@@ -97,5 +98,13 @@ public class User {
 //        public void setRoles(Set<String> roles) {
 //                this.roles = roles;
 //        }
+
+        public String getProfilePicture() {
+                return profilePicture;
+        }
+
+        public void setProfilePicture(String profilePicture) {
+                this.profilePicture = profilePicture;
+        }
 }
 
