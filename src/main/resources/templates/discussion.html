@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="ru" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -112,7 +112,6 @@
 <div class="container">
     <h2 th:text="${topic.topicSelection}">Название топика</h2>
 
-
     <div class="comments">
         <h3>Комментарии:</h3>
         <div class="comment" th:each="comment : ${comments}">
@@ -122,15 +121,19 @@
         </div>
     </div>
 
+    <div class="comment-form" sec:authorize=isAuthenticated()>
 
-    <div class="comment-form">
         <h3>Оставьте комментарий:</h3>
         <form th:action="@{/submit-comment}" method="POST">
             <input type="hidden" name="topicId" th:value="${topic.id}">
-            <input type="text" name="username" placeholder="Ваше имя" required>
+            <input type="text" name="username" th:value="${#authentication.principal.username}" placeholder="Ваше имя" required>
             <textarea name="text" rows="5" placeholder="Ваш комментарий..." required></textarea>
             <button type="submit">Отправить комментарий</button>
         </form>
+    </div>
+
+    <div th:if="${#authentication.principal == null}">
+        <p>Пожалуйста, войдите, чтобы оставлять комментарии.</p>
     </div>
 
     <div class="pagination">
@@ -141,3 +144,4 @@
 </div>
 </body>
 </html>
+

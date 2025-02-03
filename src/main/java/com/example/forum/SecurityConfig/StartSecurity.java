@@ -1,12 +1,16 @@
 package com.example.forum.SecurityConfig;
 
 
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+
 
 @Configuration
 public class StartSecurity {
@@ -16,11 +20,13 @@ public class StartSecurity {
         http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/","/topic/{id}", "/submit-comment", "redirect:/topic/" ,"/create-topic", "/register", "/login").permitAll()
-                        .anyRequest().permitAll()
+                        .requestMatchers("/","/topic/{id}", "/submit-comment", "redirect:/topic/" ,"/create-topic", "/register", "/login", "/topic/{id}/discussion").permitAll()
+                        .requestMatchers("/profile").authenticated()
+                        .anyRequest().authenticated()
                 )
                 .formLogin(form -> form
                         .loginPage("/login")
+                        .failureUrl("/login?error=true")
                         .defaultSuccessUrl("/profile", true)
                         .permitAll()
                 )
@@ -39,6 +45,12 @@ public class StartSecurity {
         return new BCryptPasswordEncoder();
     }
 
+    @Bean
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
+        return authenticationConfiguration.getAuthenticationManager();
+    }
+
 }
+
 
 
